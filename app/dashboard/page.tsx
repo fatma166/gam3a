@@ -7,7 +7,7 @@ export default async function DashboardPage(){
   const [page,site]=await Promise.all([getPage("dashboard"),getSite()]);
   if(!page)notFound();
   return <Shell><main className="page-wrap dashboard-page">
-    <SectionTitle kicker="Student Portal" title={text(page.content,"title")} text={text(page.content,"description")}/>
+    <SectionTitle kicker="بوابة الطالب" title={text(page.content,"title")} text={text(page.content,"description")}/>
     <section className="dashboard-overview">
       <div>
         <span>متابعة الطلب</span>

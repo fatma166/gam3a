@@ -32,7 +32,7 @@ export default function ConsultationsPage() {
       <main className="consultations-page">
         <section className="consultation-hero">
           <div>
-            <span>Consultations</span>
+            <span>الاستشارات</span>
             <h1>استشارات التقديم والقبول</h1>
             <h2>هل مشكلتك في الشهادة، الرغبات، المستندات، أم المتابعة؟</h2>
             <p>
@@ -61,7 +61,7 @@ export default function ConsultationsPage() {
         </section>
 
         <section className="section embedded-section consultation-section">
-          <SectionTitle kicker="Services" title="أنواع الاستشارات" text="اختر الخدمة حسب السؤال الذي تريد إجابته قبل بدء الطلب." />
+          <SectionTitle kicker="الخدمات" title="أنواع الاستشارات" text="اختر الخدمة حسب السؤال الذي تريد إجابته قبل بدء الطلب." />
           <div className="benefit-grid">
             {consultationTypes.map(([title, description]) => (
               <article className="benefit-card" key={title}>
@@ -73,7 +73,7 @@ export default function ConsultationsPage() {
         </section>
 
         <section className="section embedded-section consultation-section">
-          <SectionTitle kicker="Admission Details" title="تفاصيل مهمة قبل التقديم" text="هذه النقاط تمنع أخطاء شائعة وتوضح للطالب ما الذي يحدث بعد إرسال الملف." />
+          <SectionTitle kicker="تفاصيل القبول" title="تفاصيل مهمة قبل التقديم" text="هذه النقاط تمنع أخطاء شائعة وتوضح للطالب ما الذي يحدث بعد إرسال الملف." />
           <div className="logic-grid">
             {admissionDetails.map(([title, description]) => (
               <article className="logic-card" key={title}>
@@ -87,7 +87,7 @@ export default function ConsultationsPage() {
         <section className="university-section-card two-column-card consultation-docs">
           <div>
             <div className="section-mini-title">
-              <span>Documents</span>
+              <span>المستندات</span>
               <h2>ما الذي نراجعه في الاستشارة؟</h2>
             </div>
             <ul className="document-list">

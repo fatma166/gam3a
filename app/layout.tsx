@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { getSite, text } from "./api";
+import ScrollMotion from "./ScrollMotion";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = (await getSite()).entries.find(e => e.slug === "site-settings")?.content;
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body>{children}</body>
+      <body><ScrollMotion />{children}</body>
     </html>
   );
 }

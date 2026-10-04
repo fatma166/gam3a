@@ -12,10 +12,10 @@ const createdPages = [
 ];
 
 const socialLinks = [
-  ["Facebook", "https://facebook.com/", "https://cdn.simpleicons.org/facebook/0b3b5c"],
-  ["Instagram", "https://instagram.com/", "https://cdn.simpleicons.org/instagram/0b3b5c"],
-  ["WhatsApp", "https://wa.me/201000000000", "https://cdn.simpleicons.org/whatsapp/0b3b5c"],
-  ["Email", "mailto:info@taqdeem-edu.com", "https://cdn.simpleicons.org/maildotru/0b3b5c"],
+  ["Facebook", "https://facebook.com/", "https://cdn.simpleicons.org/facebook/012237"],
+  ["Instagram", "https://instagram.com/", "https://cdn.simpleicons.org/instagram/012237"],
+  ["WhatsApp", "https://wa.me/201000000000", "https://cdn.simpleicons.org/whatsapp/012237"],
+  ["Email", "mailto:info@taqdeem-edu.com", "https://cdn.simpleicons.org/maildotru/012237"],
 ];
 
 export async function Header() {
@@ -52,8 +52,8 @@ export async function Header() {
 export async function Footer() {
   const settings = (await getSite()).entries.find(e => e.slug === "site-settings")?.content;
   return <footer className="footer">
-    <div>
-      <strong>{text(settings, "brand")}</strong>
+    <div className="footer-brand">
+      <Link href="/" className="brand footer-logo"><span className="brand-mark">ت</span><span><strong>{text(settings, "brand")}</strong><small>{text(settings, "tagline")}</small></span></Link>
       <p>{text(settings, "footer")}</p>
       <div className="social-links">
         {socialLinks.map(([label, href, icon]) => (
@@ -63,10 +63,16 @@ export async function Footer() {
         ))}
       </div>
     </div>
+    <div className="footer-cta">
+      <span>جاهز تبدأ؟</span>
+      <strong>خلّي ملفك الجامعي واضح من أول خطوة.</strong>
+      <Link href="/apply" className="primary-button compact">ابدأ طلبك</Link>
+    </div>
     <div className="footer-links">
+      <strong>صفحات مهمة</strong>
       {pairs(settings?.navigation).map(([label, href]) => <Link href={safeHref(href)} key={href}>{label}</Link>)}
       <Link href="/consultations">الاستشارات</Link>
-      <Link href="/apply">ابدأ طلبك</Link>
+      <Link href="/dashboard">بوابة الطالب</Link>
     </div>
   </footer>;
 }

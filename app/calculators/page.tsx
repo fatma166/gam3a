@@ -6,7 +6,7 @@ export default async function CalculatorsPage() {
   const [rules,page]=await Promise.all([apiGet<CalculatorRule[]>("/calculator-rules"),getPage("calculators")]);
   if(!page) notFound();
   return <Shell><main className="page-wrap calculators-page">
-    <SectionTitle kicker="Eligibility" title={text(page.content,"title")} text={text(page.content,"description")}/>
+    <SectionTitle kicker="حساب الأهلية" title={text(page.content,"title")} text={text(page.content,"description")}/>
     <section className="page-support-section calculator-intro">
       <div>
         <span>قبل ترتيب الرغبات</span>
