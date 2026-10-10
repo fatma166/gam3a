@@ -1,0 +1,3 @@
+module.exports=[78141,a=>{"use strict";var b=a.i(87924);a.s(["default",0,function({reset:a}){return(0,b.jsxs)("main",{className:"page-wrap",dir:"rtl",children:[(0,b.jsx)("h1",{children:"تعذر تحميل البيانات"}),(0,b.jsx)("p",{children:"الخادم غير متاح حاليًا. حاول مرة أخرى بعد قليل."}),(0,b.jsx)("button",{className:"primary-button",onClick:a,children:"إعادة المحاولة"})]})}])}];
+
+//# sourceMappingURL=app_error_tsx_20-epnw._.js.map

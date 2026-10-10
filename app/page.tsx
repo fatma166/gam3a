@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { getArticles, getCertificateTracks, getSite, pairs, strings, text } from "./api";
+import { getArticles, getSite, getTracks, pairs, strings, text } from "./api";
 import { Shell, SectionTitle } from "./components";
+import HomeEligibilitySearch from "./HomeEligibilitySearch";
 
 type HomeIconName = "university" | "program" | "certificate" | "file" | "admission" | "support" | "check" | "trend" | "target" | "grid" | "question" | "clock";
 
@@ -29,7 +30,7 @@ const benefitIcons: HomeIconName[] = ["trend", "target", "grid", "check", "quest
 const faqIcons: HomeIconName[] = ["question", "check", "file", "admission", "trend", "target"];
 
 export default async function Home() {
-  const [site, articles, certificateTracks] = await Promise.all([getSite(), getArticles(), getCertificateTracks()]);
+  const [site, articles, tracks] = await Promise.all([getSite(), getArticles(), getTracks()]);
   const page = site.entries.find(e => e.slug === "home");
   if (!page) notFound();
   const c = page.content;
@@ -70,23 +71,7 @@ export default async function Home() {
       <div><i className="card-icon"><HomeIcon name="program" /></i><strong>{site.counts.programs}</strong><span>برنامج</span></div>
       <div><i className="card-icon"><HomeIcon name="certificate" /></i><strong>{site.counts.tracks}</strong><span>مسار شهادة</span></div>
     </section>
-    <section className="search-band home-search">
-      <div>
-        <label>نوع الشهادة</label>
-        <select defaultValue={certificateTracks[0] ?? "IGCSE / GCSE"}>
-          {certificateTracks.map(track => <option key={track}>{track}</option>)}
-        </select>
-      </div>
-      <div>
-        <label>المجموع المتوقع</label>
-        <input placeholder="مثال: 87%" />
-      </div>
-      <div>
-        <label>التخصص المرغوب</label>
-        <input placeholder="طب، هندسة، صيدلة..." />
-      </div>
-      <Link href="/calculators" className="primary-button compact">احسب الأهلية</Link>
-    </section>
+    <HomeEligibilitySearch tracks={tracks} />
     <section className="section plans-section">
       <div className="section-head-row services-head">
         <SectionTitle kicker="الخدمات" title={text(c,"services_title")} text="خدمات مختصرة وواضحة تساعد الطالب على اختيار المسار الصحيح، تجهيز الملف، ومتابعة الطلب دون تشتت." />
@@ -151,7 +136,40 @@ export default async function Home() {
         </div>
       </div>
     </section>
-    <section className="section editorial-home"><div className="pattern-title-band"><SectionTitle kicker="" title={text(c,"articles_title")} text="" /></div><div className="article-grid">{articles.slice(0,3).map(a => <Link href={"/articles/"+a.slug} className="article-card" key={a.slug}><span className="article-thumb" style={{backgroundImage:`url(${a.image})`}} /><div><small>{a.category}</small><h3>{a.title}</h3><p>{a.excerpt}</p></div></Link>)}</div></section>
+    <section className="section editorial-home">
+      <div className="pattern-title-band"><SectionTitle kicker="" title={text(c,"articles_title")} text="" /></div>
+      <div className="guide-video-layout">
+        <div className="guide-video-card" aria-label="فيديو إرشادي لدليل الطالب">
+          <div className="guide-video-scene">
+            <div className="ai-video-layer" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <span className="video-badge">دليل الطالب</span>
+            <strong>قبل ما تبدأ طلبك</strong>
+            <p>٤ خطوات تمنع تأخير الملف وتخلي اختيار الجامعة أوضح.</p>
+            <div className="video-step-feed">
+              {["راجع شهادتك", "احسب أهليتك", "جهز مستنداتك", "رتب رغباتك"].map((item) => <span key={item}>{item}</span>)}
+            </div>
+            <Link href="/articles" className="reel-link">شاهد الدليل</Link>
+          </div>
+        </div>
+        <div className="guide-article-stack">
+          {articles.slice(0,3).map((a, index) => (
+            <Link href={"/articles/"+a.slug} className="guide-mini-card" key={a.slug}>
+              <span className="guide-mini-image" style={{backgroundImage:`url(${a.image})`}} />
+              <div>
+                <small>{a.category}</small>
+                <h3>{a.title}</h3>
+                <p>{a.excerpt}</p>
+              </div>
+              <b>{String(index + 1).padStart(2, "0")}</b>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
     <section className="section faq-section"><SectionTitle kicker="" title={text(c,"faq_title")} text="إجابات سريعة على الأسئلة التي تمنع تأخير الطلب أو اختيار مسار غير مناسب." /><div className="faq-grid">{site.entries.filter(e => e.kind === "faq").map((e, index) => <article className="faq-item" key={e.id}><i className="card-icon"><HomeIcon name={faqIcons[index % faqIcons.length]} /></i><h3>{e.name}</h3><p>{text(e.content,"answer")}</p></article>)}</div></section>
   </main></Shell>;
 }

@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../../../api";
 async function proxy(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const { path } = await context.params;
   const route = path.join("/");
-  if (!/^(auth\/(login|register|logout)|me|dashboard|calculate-equivalency|applications(?:\/\d+(?:\/documents)?)?)$/.test(route)) {
+  if (!/^(auth\/(login|register|logout)|me|dashboard|calculate-equivalency|search-eligibility|applications(?:\/\d+(?:\/documents)?)?)$/.test(route)) {
     return NextResponse.json({ message: "Not found" }, { status: 404 });
   }
   if (request.method !== "GET" && request.headers.get("origin") !== request.nextUrl.origin) {

@@ -7,7 +7,7 @@ import ApplicationForm from "./ApplicationForm";
 export default async function ApplyPage({searchParams}:{searchParams:Promise<{service?:string;program?:string}>}) {
   const [site,tracks,programs,page,query]=await Promise.all([getSite(),getTracks(),getPrograms(),getPage("apply"),searchParams]);
   if(!page)notFound();
-  return <Shell><main className="page-wrap"><SectionTitle kicker="طلب التقديم" title={text(page.content,"title")} text={text(page.content,"description")}/>
+  return <Shell><main className="page-wrap apply-page"><SectionTitle kicker="طلب التقديم" title={text(page.content,"title")} text={text(page.content,"description")}/>
   <section className="page-support-section">
     <div>
       <span>قبل إرسال الطلب</span>

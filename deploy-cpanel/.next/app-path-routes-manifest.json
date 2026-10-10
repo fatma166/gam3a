@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/page": "/admin",
+  "/api/backend/[...path]/route": "/api/backend/[...path]",
+  "/apply/page": "/apply",
+  "/articles/[slug]/page": "/articles/[slug]",
+  "/articles/page": "/articles",
+  "/calculators/page": "/calculators",
+  "/consultations/page": "/consultations",
+  "/dashboard/page": "/dashboard",
+  "/page": "/",
+  "/programs/page": "/programs",
+  "/universities/[slug]/page": "/universities/[slug]",
+  "/universities/page": "/universities"
+}

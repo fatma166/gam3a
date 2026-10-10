@@ -3,6 +3,10 @@
 import { useEffect } from "react";
 
 const revealSelectors = [
+  ".section",
+  ".trust-strip",
+  ".search-band",
+  ".consultation-proof",
   ".section-title",
   ".feature-card",
   ".university-card",
@@ -35,7 +39,7 @@ export default function ScrollMotion() {
 
     elements.forEach((element, index) => {
       element.classList.add("reveal-item");
-      element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+      element.style.setProperty("--reveal-delay", `${Math.min(index % 5, 4) * 85}ms`);
     });
 
     const observer = new IntersectionObserver(
@@ -46,7 +50,7 @@ export default function ScrollMotion() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.16 },
+      { rootMargin: "0px 0px -18% 0px", threshold: 0.12 },
     );
 
     elements.forEach(element => observer.observe(element));
